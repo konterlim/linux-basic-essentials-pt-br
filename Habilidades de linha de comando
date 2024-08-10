@@ -1,0 +1,502 @@
+A maioria dos sistemas operacionais de consumo são projetados para proteger o usuário dos meandros da CLI. A comunidade Linux é diferente, pois celebra positivamente a CLI por seu poder, velocidade e capacidade de realizar uma vasta gama de tarefas com uma única instrução de linha de comando.
+
+Quando um usuário encontra a CLI pela primeira vez, ele pode achar isso desafiador porque requer memorizar uma quantidade estonteante de comandos e suas opções. No entanto, uma vez que um usuário tenha aprendido a estrutura de como os comandos são usados, onde os arquivos e diretórios necessários estão localizados e como navegar na hierarquia de um sistema de arquivos, ele pode ser imensamente produtivo. Esse recurso fornece controle mais preciso, maior velocidade e a capacidade de automatizar tarefas mais facilmente por meio de scripts.
+
+Além disso, ao aprender a CLI, um usuário pode facilmente se tornar produtivo quase instantaneamente em QUALQUER versão ou distribuição do Linux, reduzindo o tempo necessário para se familiarizar com um sistema devido a variações em uma GUI.
+
+Concha
+Depois que um usuário digita um comando, o terminal aceita o que o usuário digitou e passa para um shell . O shell é o interpretador de linha de comando que traduz comandos digitados por um usuário em ações a serem executadas pelo sistema operacional. Se a saída for produzida pelo comando, o texto será exibido no terminal. Se forem encontrados problemas com o comando, uma mensagem de erro será exibida.
+
+O ambiente Linux permite o uso de muitos shells diferentes, alguns dos quais já existem há muitos anos. O shell mais comumente usado para distribuições Linux é chamado de Bash shell. O Bash fornece muitos recursos avançados, como histórico de comandos e edição em linha, o que permite que um usuário reexecute facilmente comandos executados anteriormente ou uma variação deles por meio de edição simples.
+
+O shell Bash também tem outros recursos populares, alguns dos quais estão listados abaixo:
+
+Scripting: A habilidade de colocar comandos em um arquivo e então interpretar (efetivamente usar Bash para executar o conteúdo) do arquivo, resultando em todos os comandos sendo executados. Esse recurso também tem alguns recursos de programação, como instruções condicionais e a habilidade de criar funções (também conhecidas como subrotinas).
+Aliases: Capacidade de criar apelidos curtos para comandos mais longos.
+Variáveis: Usadas para armazenar informações para o shell Bash e para o usuário. Essas variáveis ​​podem ser usadas para modificar como os comandos e recursos funcionam, bem como fornecer informações vitais do sistema.
+O Bash tem uma extensa lista de recursos; esta é apenas uma amostra de suas capacidades.
+
+Quando um aplicativo de terminal é executado, e um shell aparece, exibindo uma parte importante da interface — o prompt . O prompt não está lá apenas para indicar que os comandos podem ser executados, mas também transmite informações úteis ao usuário. O prompt é totalmente configurável e pode ser tão esparso ou tão completo quanto for prático e útil.
+
+A estrutura do prompt pode variar entre distribuições, mas normalmente contém informações sobre o usuário e o sistema. Abaixo está uma estrutura de prompt comum:
+
+sysadmin@localhost : ~ $
+O prompt mostrado contém as seguintes informações:
+
+Nome de usuário:
+
+administrador de sistema @localhost : ~ $
+Nome do sistema:
+
+sysadmin@ localhost : ~ $
+Diretório atual:
+
+sysadmin@localhost : ~ $
+O ~símbolo é usado como uma abreviação para o diretório home do usuário. Normalmente, o diretório home do usuário está sob o /homediretório e é nomeado após o nome da conta do usuário; por exemplo, /home/sysadmin.
+
+Comandos
+O que é um comando? A resposta mais simples é que um comando é um programa de software que, quando executado na CLI, realiza uma ação no computador.
+
+Para executar um comando, o primeiro passo é digitar o nome do comando. Clique no terminal à direita. Digite lse pressione Enter . O resultado deve se parecer com o exemplo abaixo:
+
+sysadmin@localhost : ~ $ ls
+ Desktop Documentos Downloads Música Imagens Público Modelos Vídeos
+Nota: Por si só, o lscomando lista arquivos e diretórios contidos no diretório de trabalho atual. Neste ponto, você não deve se preocupar muito com a saída do comando, em vez disso, concentre-se em entender como formatar e executar comandos.
+
+O lscomando será abordado em detalhes completos mais adiante no curso.
+
+Muitos comandos podem ser usados ​​por si mesmos sem nenhuma entrada adicional. Alguns comandos exigem entrada adicional para serem executados corretamente. Essa entrada adicional vem em duas formas: opções e argumentos .
+
+O formato típico para um comando é o seguinte:
+
+comando [opções] [argumentos]
+As opções são usadas para modificar o comportamento principal de um comando, enquanto os argumentos são usados ​​para fornecer informações adicionais (como um nome de arquivo ou um nome de usuário). Cada opção e argumento são normalmente separados por um espaço, embora as opções possam frequentemente ser combinadas.
+
+Tenha em mente que o Linux diferencia maiúsculas de minúsculas. Comandos, opções, argumentos, variáveis ​​e nomes de arquivo devem ser inseridos exatamente como mostrado.
+
+Argumentos
+comando [opções] [argumentos]
+Um argumento pode ser usado para especificar algo para o comando agir. Se o lscomando receber o nome de um diretório como argumento, ele lista o conteúdo desse diretório. No exemplo a seguir, o /etc/pppdiretório é usado como argumento; a saída resultante é uma lista de arquivos contidos nesse diretório:
+
+sysadmin@localhost : ~ $ ls /etc/ppp                                 
+ip-down.d ip-up.d                                                
+O lscomando também aceita múltiplos argumentos. Para listar o conteúdo dos diretórios /etc/pppe /etc/ssh, passe ambos como argumentos:
+
+sysadmin@localhost : ~ $ ls /etc/ppp /etc/ssh         
+/etc/ppp:                       
+ip-down.d ip-up.d                                  
+/etc/ssh:                                                         
+módulos ssh_host_dsa_key.pub ssh_host_rsa_key sshd_configssh_config
+chave_ecdsa_do_host_ssh chave_rsa_do_host_ssh.pub         
+chave_dsa_do_host_ssh chave_ecdsa_do_host_ssh.pub id_de_importação_ssh            
+
+Opções
+comando [opções] [argumentos]
+Opções podem ser usadas com comandos para expandir ou modificar a maneira como um comando se comporta. Por exemplo, usar a -lopção do lscomando resulta em uma longa listagem , fornecendo informações adicionais sobre os arquivos que estão listados, como as permissões, o tamanho do arquivo e outras informações:
+
+sysadmin@localhost : ~ $ ls -l                                       
+total 0
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Área de trabalho              
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Documentos            
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Downloads            
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Música                
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Imagens             
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Público                
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Modelos            
+drwxr-xr-x 1 sysadmin sysadmin 0 29 de janeiro de 20:13 Vídeos  
+Note que, no comando acima, -lhá uma letra minúscula "L". Uma maneira fácil de lembrar disso é -lusando um mnemônico (código de programação fácil de memorizar) para listagem longa ) .
+Frequentemente, o caractere é escolhido para ser mnemônico para seu propósito, como escolher a letra l para long ou r para reverse . Por padrão, o lscomando imprime os resultados em ordem alfabética e, portanto, ao adicionar a -ropção, ele imprime os resultados em ordem alfabética reversa.
+
+sysadmin@localhost : ~ $ ls -r
+ Vídeos Modelos Público Imagens Música Downloads Documentos Desktop
+Na maioria dos casos, as opções podem ser usadas em conjunto com outras opções. Elas podem ser fornecidas como opções separadas, como em -l -r, ou combinadas, como em -lr. A combinação dessas duas opções resultaria em uma longa saída de listagem em ordem alfabética reversa:
+
+sysadmin@localhost : ~ $ ls -lr                                                    
+total 32                                                                        
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Vídeos                          
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Modelos                       
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Público                          
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Imagens                        
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Música                           
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 out 20:13 Downloads                       
+drwxr-xr-x 4 sysadmin sysadmin 4096 31 out 20:13 Documentos                       
+drwxr-xr-x 2 sysadmin sysadmin 4096 31 de outubro 20:13 Desktop
+A ordem das opções combinadas não é importante. A saída de todos esses exemplos seria a mesma:
+
+ls -l -r
+ls -rl
+ls-lr
+Por padrão, a -lopção do lscomando exibe os tamanhos dos arquivos em bytes:
+
+sysadmin@localhost : ~ $ ls -l /usr/bin/perl                         
+-rwxr-xr-x 2 root root 10376 4 de fev de 2018 /usr/bin/perl         
+Se a -hopção for adicionada, os tamanhos dos arquivos serão exibidos em formato legível por humanos :
+
+sysadmin@localhost : ~ $ ls -lh /usr/bin/perl                        
+-rwxr-xr-x 2 root root 11K 4 de fev de 2018 /usr/bin/perl
+As opções geralmente são letras únicas; no entanto, às vezes também são palavras ou frases. Normalmente, os comandos mais antigos usam letras únicas, enquanto os comandos mais novos usam palavras completas para opções. As opções de uma única letra são precedidas por um único -caractere de traço, como a -hopção. As opções de palavra inteira são precedidas por dois --caracteres de traço. A -hopção também tem uma forma equivalente de palavra inteira; a --human-readableopção.
+
+sysadmin@localhost : ~ $ ls -l --human-readable /usr/bin/perl                        
+-rwxr-xr-x 2 root root 11K 4 de fev de 2018 /usr/bin/perl
+
+ História
+Quando um comando é executado no terminal, ele é armazenado em uma lista de histórico. Isso é projetado para facilitar a execução do mesmo comando, eliminando posteriormente a necessidade de redigitar o comando inteiro.
+
+Pressionar a tecla Up Arrow ↑ exibe o comando anterior na linha de prompt. O histórico inteiro de comandos executados na sessão atual pode ser exibido pressionando Up repetidamente para voltar pelo histórico de comandos que foram executados. Pressionar a tecla Enter executa o comando exibido novamente.
+
+Quando o comando desejado é localizado, as teclas Seta para a esquerda ← e Seta para a direita → podem posicionar o cursor para edição. Outras teclas úteis para edição incluem as teclas Home , End , Backspace e Delete .
+
+Para visualizar a lista de histórico de um terminal, use o historycomando:
+
+sysadmin@localhost : ~ $ data                                       
+Qua Dez 12 04:28:12 UTC 2018                                   
+sysadmin@localhost : ~ $ ls                                           
+ Desktop Documentos Downloads Música Imagens Público Modelos Vídeos        
+sysadmin@localhost : ~ $ cal 5 2030                                  
+     Maio de 2030                                                                  
+Su Mo Tu We Th Fr Sa                                                            
+          1 2 3 4                                                            
+ 5 6 7 8 9 10 11                                                            
+12 13 14 15 16 17 18                                                            
+19 20 21 22 23 24 25                                                            
+26 27 28 29 30 31                                                               
+sysadmin@localhost : ~ $ histórico                                   
+    1 encontro                                                       
+    2 ls                                                      
+    3 cal 5 2030                                             
+    4 história                                                 
+Se o comando desejado estiver na lista historygerada pelo comando, ele poderá ser executado digitando um ponto de exclamação !e depois o número ao lado do comando, por exemplo, para executar o calcomando novamente:
+
+sysadmin@localhost : ~ $ histórico                                     
+    1 encontro                                                      
+    2 ls                                                         
+    3 cal 5 2030                                                 
+    4 história                                                    
+sysadmin@localhost : ~ $ !3                                        
+cal 5 2030                                                        
+     Maio de 2030                                                                  
+Su Mo Tu We Th Fr Sa                                                            
+          1 2 3 4                                                            
+ 5 6 7 8 9 10 11                                                            
+12 13 14 15 16 17 18                                                            
+19 20 21 22 23 24 25                                                            
+Se o historycomando receber um número como argumento, ele emite esse número de comandos anteriores da lista de histórico. Por exemplo, para mostrar os últimos três comandos:
+
+sysadmin@localhost : ~ $ histórico 3
+    6 data                                                                     
+    7 ls /casa                                                                   
+    8 história 3
+‌⁠​​⁠​ Para executar o enésimo comando da parte inferior da lista do histórico, digite e pressione!-nDigitar. Por exemplo, para executar o terceiro comando da parte inferior da lista do histórico, execute o seguinte:
+
+sysadmin@localhost : ~ $ !-3                                                       
+data                                                                            
+Qua Dez 12 04:31:55 UTC 2018
+Para executar o comando mais recente, !!digite e pressione Enter :
+
+sysadmin@localhost : ~ $ data                                                      
+Qua Dez 12 04:32:36 UTC 2018                                                    
+sysadmin@localhost : ~ $ !!                                                        
+data
+Qua Dez 12 04:32:38 UTC 2018
+Para executar a iteração mais recente de um comando específico, digite !seguido pelo nome do comando e pressione Enter . Por exemplo, para executar o lscomando mais recente:
+
+sysadmin@localhost : ~ $ !ls                                                       
+ls /casa                                                                        
+administrador de sistemas
+
+Variáveis ​​locais
+Variáveis ​​locais ou de shell existem somente no shell atual e não podem afetar outros comandos ou aplicativos. Quando o usuário fecha uma janela de terminal ou shell, todas as variáveis ​​são perdidas. Elas são frequentemente associadas a tarefas baseadas no usuário e são minúsculas por convenção.
+
+Para definir o valor de uma variável, use a seguinte expressão de atribuição. Se a variável já existir, o valor da variável será modificado. Se o nome da variável ainda não existir, o shell criará uma nova variável local e definirá o valor:
+
+variável = valor
+O exemplo a seguir cria uma variável local chamada variable1e atribui a ela o valor Something:
+
+sysadmin@localhost : ~ $ variável1='Algo'
+O echocomando é usado para exibir a saída no terminal. Para exibir o valor da variável, use um $caractere de cifrão seguido pelo nome da variável como um argumento para o echocomando:
+
+sysadmin@localhost : ~ $ echo $variável1                                   
+Algo
+ Variáveis ​​de ambiente
+Variáveis ​​de ambiente , também chamadas de variáveis ​​globais , estão disponíveis em todo o sistema, em todos os shells usados ​​pelo Bash ao interpretar comandos e executar tarefas. O sistema recria automaticamente variáveis ​​de ambiente quando um novo shell é aberto. Exemplos incluem as variáveis PATH​​, HOME, e HISTSIZE. A HISTSIZEvariável define quantos comandos anteriores armazenar na lista de histórico. O comando no exemplo abaixo exibe o valor da HISTSIZEvariável:
+
+sysadmin@localhost : ~ $ echo $HISTSIZE
+1000
+Para modificar o valor de uma variável existente, use a expressão de atribuição:
+
+sysadmin@localhost : ~ $ HISTSIZE=500                                            
+ sysadmin@localhost : ~ $ echo $HISTSIZE                              
+500  
+Muitas variáveis ​​estão disponíveis para o Bash shell, assim como variáveis ​​que afetam diferentes comandos Linux. Uma discussão de todas as variáveis ​​está além do escopo deste capítulo; no entanto, mais variáveis ​​de shell serão abordadas conforme este curso avança.
+Quando executado sem argumentos, o envcomando gera uma lista de variáveis ​​de ambiente. Como a saída do envcomando pode ser bem longa, os exemplos a seguir usam uma pesquisa de texto para filtrar essa saída.
+
+Em um exemplo anterior variable1foi criado como uma variável local, então a seguinte busca nas variáveis ​​de ambiente não resulta em nenhuma saída:
+
+sysadmin@localhost : ~ $ env | grep variável1                              
+O |caractere de pipe passa a saída do envcomando para o grepcomando, que pesquisa a saída.
+
+Essa técnica de filtragem de texto será abordada em detalhes mais adiante no curso.
+
+O exportcomando é usado para transformar uma variável local em uma variável de ambiente.
+
+variável de exportação
+Após exportar variable1, agora é uma variável de ambiente. Agora é encontrado na busca por meio das variáveis ​​de ambiente:
+
+sysadmin@localhost : ~ $ export variável1                                  
+ sysadmin@localhost : ~ $ env | grep variável1
+variável1=Algo
+O exportcomando também pode ser usado para tornar uma variável uma variável de ambiente após sua criação usando a expressão de atribuição como argumento:
+
+sysadmin@localhost : ~ $ export variável2='Else'                           
+ sysadmin@localhost : ~ $ env | grep variável2                             
+variável2=Senão
+Para alterar o valor de uma variável de ambiente, use a expressão de atribuição:
+
+sysadmin@localhost : ~ $ variável1=$variável1' '$variável2                
+ sysadmin@localhost : ~ $ echo $variável1                                   
+Outra coisa
+Variáveis ​​exportadas podem ser removidas usando o unsetcomando:
+
+sysadmin@localhost : ~ $ unset variável2
+
+Variável de caminho
+Uma das variáveis ​​mais importantes do shell Bash para entender é a PATHvariável. Ela contém uma lista que define em quais diretórios o shell procura para encontrar comandos. Se um comando válido for inserido e o shell retornar um erro "comando não encontrado", é porque o shell Bash não conseguiu localizar um comando com esse nome em nenhum dos diretórios incluídos no caminho. O comando a seguir exibe o caminho do shell atual:
+
+sysadmin@localhost : ~ $ echo $PATH                                        
+/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/jogos
+sysadmin@localhost : ~ $
+Cada diretório na lista é separado por um :caractere de dois pontos. Com base na saída anterior, o caminho contém os seguintes diretórios. O shell verificará os diretórios na ordem em que estão listados:
+
+/home/sysadmin/bin
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/caixa
+/usr/jogos
+Cada um desses diretórios é representado por um caminho . Um caminho é uma lista de diretórios separados pelo caractere / . Se você pensar no sistema de arquivos como um mapa, os caminhos são os endereços de diretório, que incluem direções de navegação passo a passo; eles podem ser usados ​​para indicar a localização de qualquer arquivo dentro do sistema de arquivos. Por exemplo, /home/sysadminé um caminho para o diretório home:
+
+
+Se o comando não for encontrado em nenhum diretório listado na PATHvariável, o shell retornará um erro:
+
+sysadmin@localhost : ~ $ zed                                              
+-bash: zed: comando não encontrado                                           
+sysadmin@localhost : ~ $
+‌⁠​​⁠​ Se um software personalizado estiver instalado no sistema, pode ser necessário modificar o PATHpara facilitar a execução desses comandos. Por exemplo, o seguinte adicionará e verificará o /usr/bin/customdiretório para a PATHvariável:
+
+sysadmin@localhost : ~ $ PATH=/usr/bin/custom:$PATH                        
+ sysadmin@localhost : ~ $ echo $PATH                                       
+/usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games                                              
+Ao atualizar a PATHvariável, sempre inclua o caminho atual, para não perder o acesso aos comandos localizados nesses diretórios. Isso pode ser feito anexando $PATHao valor na expressão de atribuição. Lembre-se de que um nome de variável precedido por um cifrão representa o valor da variável.
+
+ Comandos Internos
+Também chamados de comandos internos , os comandos internos são incorporados ao próprio shell. Um bom exemplo é o cd comando (change directory), pois ele faz parte do shell Bash. Quando um usuário digita o cdcomando, o shell Bash já está executando e sabe como interpretá-lo, não exigindo que programas adicionais sejam iniciados.
+
+O typecomando identifica o cdcomando como um comando interno:
+
+sysadmin@localhost : ~ $ tipo cd                                     
+cd é um shell embutid
+
+Comandos externos
+Comandos externos são executáveis ​​binários armazenados em diretórios que são pesquisados ​​pelo shell. Se um usuário digitar o lscomando, o shell pesquisará nos diretórios listados na PATHvariável para tentar encontrar um arquivo chamado lsque ele possa executar.
+
+Se um comando não se comportar como esperado ou se um comando não estiver acessível como deveria, pode ser benéfico saber onde o shell está encontrando o comando ou qual versão ele está usando. Seria tedioso ter que procurar manualmente em cada diretório listado na PATHvariável. Em vez disso, use o whichcomando para exibir o caminho completo para o comando em questão:
+
+qual comando
+O whichcomando procura a localização de um comando pesquisando a PATHvariável.
+
+sysadmin@localhost : ~ $ qual ls                                       
+/bin/ls                                                               
+sysadmin@localhost : ~ $ qual cal                                        
+/usr/bin/cal
+Comandos externos também podem ser executados digitando o caminho completo para o comando. Por exemplo, para executar o lscomando:
+
+sysadmin@localhost : ~ $ /bin/ls                                                   
+Desktop Documentos Downloads Música Imagens Público Modelos Vídeos
+Para comandos externos, o typecomando exibe a localização do comando:
+
+sysadmin@localhost : ~ $ tipo cal                                      
+cal é /usr/bin/cal
+Em alguns casos, a saída do typecomando pode diferir significativamente da saída do whichcomando:
+
+sysadmin@localhost : ~ $ tipo eco                                     
+echo é um shell embutido
+sysadmin@localhost : ~ $ qual eco                                        
+/bin/eco
+Usar a -aopção do typecomando exibe todos os locais que contêm o comando chamado:
+
+sysadmin@localhost : ~ $ tipo -a eco                                      
+echo é um shell embutido                                                
+eco é /bin/echo
+
+ Alias
+Um alias pode ser usado para mapear comandos mais longos para sequências de teclas mais curtas. Quando o shell vê um alias sendo executado, ele substitui a sequência mais longa antes de prosseguir para interpretar os comandos.
+
+Por exemplo, o comando ls -lé comumente aliasado para lor ll. Como esses comandos menores são mais fáceis de digitar, fica mais rápido executar a ls -llinha de comando.
+
+Para determinar quais aliases estão definidos no shell atual, use o aliascomando:
+
+sysadmin@localhost : ~ $ alias                                             
+alias egrep='egrep --color=auto'                                       
+alias fgrep='fgrep --color=auto'                                        
+apelido grep='grep --color=auto'                                          
+alias l='ls -CF'                                                       
+alias la='ls -A'                                                       
+alias ll='ls -alF'                                                     
+alias ls='ls --color=auto'
+Os aliases dos exemplos anteriores foram criados por arquivos de inicialização. Esses arquivos são projetados para tornar o processo de criação de aliases automático.
+
+Novos aliases podem ser criados usando o seguinte formato, onde nameé o nome a ser dado ao alias e commandé o comando a ser executado quando o alias for executado.
+
+nome do alias = comando
+Por exemplo, o cal 2019comando exibe o calendário do ano de 2019. Suponha que você acabe executando esse comando com frequência. Em vez de executar o comando completo toda vez, você pode criar um alias chamado mycale executar o alias, conforme demonstrado no gráfico a seguir:
+
+sysadmin@localhost : ~ $ alias mycal="cal 2019"                                    
+ sysadmin@localhost : ~ $ mycal                                                     
+                            2019                                                
+      Janeiro Fevereiro Março                        
+Su Mo Tu We Th Fr Sa Su Mo Tu We Th Fr Sa Su Mo Tu We Th Fr Sa                
+       1 2 3 4 5 1 2 1 2                
+ 6 7 8 9 10 11 12 3 4 5 6 7 8 9 3 4 5 6 7 8 9                
+13 14 15 16 17 18 19 10 11 12 13 14 15 16 10 11 12 13 14 15 16                
+20 21 22 23 24 25 26 17 18 19 20 21 22 23 17 18 19 20 21 22 23                
+27 28 29 30 31 24 25 26 27 28 24 25 26 27 28 29 30                
+                                            31
+Aliases criados dessa forma só persistem enquanto o shell estiver aberto. Uma vez que o shell é fechado, os novos aliases são perdidos. Além disso, cada shell tem seus próprios aliases, então aliases criados em um shell não estarão disponíveis em um novo shell que for aberto.
+
+O typecomando pode identificar aliases para outros comandos:
+
+sysadmin@localhost : ~ $ tipo ll                                          
+ll é alias para `ls -alF'                                              
+sysadmin@localhost : ~ $ tipo -a ls                                          
+ls é alias para `ls --color=auto'
+ls é /bin/ls  
+A saída desses comandos indica que llé um alias para ls -alF, e até mesmo lsé um alias para ls --color=auto.
+
+ Funções
+Funções também podem ser construídas usando comandos existentes para criar novos comandos ou para sobrescrever comandos incorporados ao shell ou comandos armazenados em arquivos. Aliases e funções são normalmente carregados dos arquivos de inicialização quando o shell é iniciado pela primeira vez.
+
+Funções são mais avançadas que aliases e normalmente são usadas em scripts de shell Bash. Normalmente, funções são usadas para executar vários comandos. Para criar uma função, a seguinte sintaxe é usada:
+
+nome_da_função ()
+{
+   comandos
+}
+No formato acima, function_namepode ser qualquer coisa que o administrador queira chamar a função. Os comandos que o administrador deseja executar podem substituir o commandsplaceholder. Observe a formatação, em particular, a localização dos parênteses ()e chaves {}, bem como a convenção de usar tabulações para tornar a função mais facilmente legível.
+
+Funções são úteis, pois permitem que um conjunto de comandos seja executado um de cada vez, em vez de digitar cada comando repetidamente. No exemplo abaixo, uma função chamada my_reporté criada para executar os comandos ls, date, e echo.
+
+sysadmin@localhost : ~ $ meu_relatório () {                                            
+> ls Documentos                                                                  
+> data                                                                          
+> echo "Relatório de diretório de documentos"                                              
+> }                             
+Ao criar uma função, um >caractere aparecerá como um prompt para inserir os comandos para a função. As chaves {}são usadas para deixar o shell saber quando uma função começa e termina para sair do >prompt.
+
+Depois que uma função é criada, o nome da função pode ser invocado no prompt do BASH para executá-la:
+
+sysadmin@localhost : ~ $ my_report                                                 
+ Escola             alpha-third.txt hidden.txt numbers.txt spelling.txt      
+ Trabalho               alpha.txt letters.txt os.csv palavras             
+adjetivos.txt animais.txt linux.txt pessoas.csv                     
+alpha-first.txt comida.txt arquivolongo.txt perfil.txt                    
+alpha-second.txt ola.sh novolar.txt vermelho.txt                        
+Qua Out 13 06:54:04 UTC 2021                                                    
+Relatório de diretório de documentos                                                       
+sysadmin@localhost : ~ $  
+
+Citação
+Aspas são usadas em toda a administração do Linux e na maioria das linguagens de programação de computador para informar ao sistema que as informações contidas entre aspas devem ser ignoradas ou tratadas de uma forma muito diferente do que normalmente seriam tratadas. Existem três tipos de aspas que têm significado especial para o shell Bash: aspas duplas ", aspas simples 'e aspas invertidas `. Cada conjunto de aspas alerta o shell para não tratar o texto entre aspas da forma normal.
+
+ Aspas duplas
+Aspas duplas impedem que o shell interprete alguns metacaracteres (caracteres especiais), incluindo caracteres glob.
+
+Caracteres glob, também chamados de wild cards , são símbolos que têm significado especial para o shell; eles são interpretados pelo próprio shell antes de tentar executar qualquer comando. Caracteres glob incluem o *caractere asterisco, o ?caractere ponto de interrogação e os colchetes [ ], entre outros.
+
+O globbing será abordado com mais detalhes posteriormente no curso.
+
+Entre aspas duplas, um asterisco é apenas um asterisco, um ponto de interrogação é apenas um ponto de interrogação, e assim por diante, o que é útil quando você quer exibir algo na tela que normalmente é um caractere especial para o shell. No echocomando abaixo, o shell Bash não converte o padrão glob em nomes de arquivo que correspondem ao padrão:
+
+sysadmin@localhost : ~ $ echo "Os caracteres glob são *, ? e [ ]"      
+Os caracteres globais são *, ? e [ ]
+Aspas duplas ainda permitem substituição de comando , substituição de variável e permitem alguns outros metacaracteres de shell que ainda não foram discutidos. A demonstração a seguir mostra que o valor da PATHvariável ainda é exibido:
+
+sysadmin@localhost : ~ $ echo "O caminho é $PATH"                          
+O caminho é /usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+Aspas Simples
+Aspas simples impedem que o shell faça qualquer interpretação de caracteres especiais, incluindo globs, variáveis, substituição de comandos e outros metacaracteres que ainda não foram discutidos.
+
+Por exemplo, para fazer com que o $caractere signifique simplesmente um $, em vez de agir como um indicador para o shell procurar o valor de uma variável, execute o segundo comando exibido abaixo:
+
+sysadmin@localhost : ~ $ echo O carro custa $ 100                           
+O carro custa 00                                                        
+sysadmin@localhost : ~ $ echo 'O carro custa $ 100'                        
+O carro custa $ 100
+
+Caractere de barra invertida
+Há também uma técnica alternativa para essencialmente colocar aspas simples em um único caractere. Considere a seguinte mensagem:
+
+O serviço custa $1 e o caminho é $PATH
+Se esta frase for colocada entre aspas duplas, $1e $PATHforem consideradas variáveis.
+
+sysadmin@localhost : ~ $ echo "O serviço custa $1 e o caminho é $PATH"
+
+‌⁠​​⁠​O serviço custa e o caminho é /usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+Se for colocado entre aspas simples, $1não $PATHsão consideradas variáveis.
+
+sysadmin@localhost : ~ $ echo 'O serviço custa $1 e o caminho é $PATH'
+O serviço custa $1 e o caminho é $PATH
+Mas e se você quiser que seja $PATHtratado como uma variável e $1não?
+
+Neste caso, use um \caractere de barra invertida na frente do caractere de cifrão $para evitar que o shell o interprete. O comando abaixo demonstra o uso do \caractere:
+
+sysadmin@localhost : ~ $ echo O serviço custa \$1 e o caminho é $PATH
+O serviço custa US$ 1 e o caminho é /usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+Crases
+Backquotes , ou acentos graves , são usados ​​para especificar um comando dentro de um comando, um processo chamado substituição de comando . Isso permite o uso poderoso e sofisticado de comandos.
+
+Embora possa parecer confuso, um exemplo deve deixar as coisas mais claras. Para começar, observe a saída do datecomando:
+
+sysadmin@localhost : ~ $ data                                           
+Seg Nov 4 03:35:50 UTC 2018
+Agora, observe a saída do echocomando:
+
+sysadmin@localhost : ~ $ echo Hoje é a data                               
+Hoje é dia
+No comando anterior, a palavra dateé tratada como texto regular, e o shell passa datepara o echocomando. Para executar o datecomando e ter a saída desse comando enviada para o echocomando, coloque o datecomando entre dois caracteres de crase:
+
+sysadmin@localhost : ~ $ echo Hoje é `date`                         
+Hoje é seg, 4 de nov 03:40:04 UTC 2018
+
+Declarações de controle
+As instruções de controle permitem que você use vários comandos de uma vez ou execute comandos adicionais, dependendo do sucesso de um comando anterior. Normalmente, essas instruções de controle são usadas em scripts, mas também podem ser usadas na linha de comando.
+
+Ponto e vírgula
+comando1 ; comando2 ; comando3
+O ;caractere ponto e vírgula pode ser usado para executar vários comandos, um após o outro. Cada comando é executado de forma independente e consecutiva; independentemente do resultado do primeiro comando, o segundo comando é executado assim que o primeiro for concluído, depois o terceiro e assim por diante.
+
+Por exemplo, para imprimir os meses de janeiro, fevereiro e março de 2030, execute o seguinte comando:
+
+sysadmin@localhost : ~ $ cal 1 2030; cal 2 2030; cal 3 2030               
+    Janeiro de 2030                                                       
+Su Mo Tu We Th Fr Sa                                                            
+       1 2 3 4 5                
+
+Duplo Ampersand
+comando1 && comando2
+O duplo ampersand &&atua como um "e" lógico; se o primeiro comando for bem-sucedido, o segundo comando também será executado. Se o primeiro comando falhar, o segundo comando não será executado.
+
+Para entender melhor como isso funciona, considere primeiro o conceito de falha e sucesso para comandos. Comandos têm sucesso quando funcionam corretamente e falham quando algo dá errado. Por exemplo, considere o lscomando. O comando tem sucesso se o diretório fornecido estiver acessível e falha se não estiver.
+
+No exemplo a seguir, o primeiro comando é bem-sucedido porque o /etc/pppdiretório existe e está acessível, enquanto o segundo comando falha porque não há /junkdiretório:
+
+sysadmin@localhost : ~ $ ls /etc/ppp                  
+ ip-down.d ip-up.d            
+sysadmin@localhost : ~ $ ls /etc/junk                             
+ls: não é possível acessar /etc/junk: arquivo ou diretório inexistente
+Para usar o sucesso ou falha do lscomando em conjunto com &&comandos execute como o seguinte. No primeiro exemplo, o echocomando é executado porque o lscomando é bem-sucedido:
+
+sysadmin@localhost : ~ $ ls /etc/ppp && echo sucesso          
+ ip-down.d ip-up.d        
+sucesso                                              
+No segundo exemplo, o echocomando não é executado porque lsfalha:
+
+sysadmin@localhost : ~ $ ls /etc/junk && echo sucesso          
+ls: não é possível acessar /etc/junk: arquivo ou diretório inexistente
+
+Tubo Duplo
+comando1 || comando2
+O pipe duplo ||é um "ou" lógico. Dependendo do resultado do primeiro comando, o segundo comando será executado ou pulado.
+
+Com o pipe duplo, se o primeiro comando for executado com sucesso, o segundo comando será pulado; se o primeiro comando falhar, o segundo comando será executado. Em outras palavras, você está essencialmente dizendo ao shell, "Execute este primeiro comando ou o segundo".
+
+No exemplo a seguir, o echocomando só será executado se lsfalhar:
+
+sysadmin@localhost : ~ $ ls /etc/ppp || eco falhou                 
+ ip-down.d ip-up.d               
+sysadmin@localhost : ~ $ ls /etc/junk || eco falhou                  
+ls: não é possível acessar /etc/junk: arquivo ou diretório inexistente             
+fracassado
