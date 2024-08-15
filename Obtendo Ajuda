@@ -1,0 +1,403 @@
+ Introdução
+Existem milhares de comandos disponíveis com muitas opções, tornando a linha de comando uma ferramenta poderosa. No entanto, com esse poder vem a complexidade. A complexidade, por sua vez, pode criar confusão. Como resultado, saber como encontrar ajuda ao trabalhar no Linux é uma habilidade essencial para qualquer usuário. Consultar a ajuda fornece um lembrete rápido de como um comando funciona, além de ser um recurso de informação ao aprender novos comandos.
+
+UNIX é o sistema operacional que serviu de modelo para o Linux. Os desenvolvedores do UNIX criaram documentos de ajuda chamados man pages (abreviação de manual pages ).
+
+Man pages são usadas para descrever os recursos dos comandos. Elas fornecem uma descrição básica do propósito do comando, bem como detalhes sobre as opções disponíveis.
+
+Para visualizar uma página de manual de um comando, use o mancomando:
+
+comando do homem
+Por exemplo, o seguinte exibe a página de manual do lscomando:
+
+sysadmin@localhost : ~ $ man ls
+Navegue pelo documento usando as teclas de seta:
+
+Comandos do usuário LS(1) LS(1)  
+                                                                                
+NOME                                                                           
+       ls - lista o conteúdo do diretório                                             
+                                                                                
+SINOPSE                                                                         
+       ls [OPÇÃO]... [ARQUIVO]...                                                 
+                                                                                
+DESCRIÇÃO                                                                     
+       Listar informações sobre os ARQUIVOS (o diretório atual por padrão).  
+       Classifique as entradas em ordem alfabética se nenhuma das opções -cftuvSUX nem --sort for especificada.  
+       verificado.                                                                    
+                                                                                
+       Argumentos obrigatórios para opções longas são obrigatórios para opções curtas  
+       também.                                                                     
+                                                                                
+       -a, --todos                                                                
+              não ignore entradas que começam com .                             
+Para sair da visualização de uma página de manual, use a tecla Q.
+
+Considere isto
+
+O mancomando usa um pager para exibir documentos. Normalmente, esse pager é o lesscomando, mas em algumas distribuições, pode ser o morecomando. Ambos são muito semelhantes em como funcionam.
+
+Para visualizar os vários comandos de movimento disponíveis, use a tecla H enquanto visualiza uma página de manual. Isso exibe uma página de ajuda.
+
+As páginas de manual são divididas em seções. Cada seção é projetada para fornecer informações específicas sobre um comando. Embora existam seções comuns vistas na maioria das páginas de manual, alguns desenvolvedores também criam seções disponíveis apenas em páginas de manual específicas.
+
+A seguir, descrevemos algumas das seções mais comuns encontradas em páginas de manual:
+
+NOME
+
+Fornece o nome do comando e uma breve descrição.
+
+NOME                                                                            
+       ls - lista o conteúdo do diretório   
+SINOPSE
+
+Fornece exemplos de como o comando é executado.
+
+SINOPSE                                                                         
+       ls [OPÇÃO]... [ARQUIVO]...   
+A SYNOPSISseção de uma página de manual pode ser difícil de entender, mas é muito importante porque fornece um exemplo conciso de como usar o comando. Por exemplo, considere a SYNOPSISpágina de manual para o calcomando:
+
+SINOPSE  
+     cal [ -31jy ] [ -A número] [ -B número] [ -d aaaa-mm] [[mês] ano] 
+Os colchetes [ ]são usados ​​para indicar que esse recurso não é necessário para executar o comando. Por exemplo, [-31jy]significa que as opções -3, -1, -j, ou -yestão disponíveis, mas não são necessárias para que o calcomando funcione corretamente.
+
+O último conjunto de colchetes [[month] year]demonstra outro recurso: significa que um ano pode ser especificado sozinho, mas para especificar um mês, o ano também deve ser especificado.
+
+Outro componente SYNOPSISque pode causar alguma confusão pode ser visto na página man do datecomando:
+
+SINOPSE                                                              
+       data [OPÇÃO]... [+FORMATO]                                      
+        data [-u|--utc|--universal] [MMDDhhmm[[CC]AA][.ss]]
+‌⁠​​⁠​ 
+Nisto SYNOPSIShá duas sintaxes para o datecomando. A primeira é usada para exibir a data no sistema enquanto a segunda é usada para definir a data.
+
+As reticências ...a seguir [OPTION]indicam que um ou mais itens anteriores podem ser usados.
+
+Além disso, a [-u|--utc|--universal]notação significa que tanto a -uopção quanto a --utcopção ou a --universalopção podem ser usadas. Normalmente, isso significa que todas as três opções realmente fazem a mesma coisa, mas às vezes o uso do |caractere é usado para indicar que as opções não podem ser usadas em combinação, como um "ou" lógico.
+
+DESCRIÇÃO
+
+Fornece uma descrição mais detalhada do comando.
+
+DESCRIÇÃO  
+       Listar informações sobre os ARQUIVOS (o diretório atual por padrão).  
+       Classifique as entradas em ordem alfabética se nenhuma das opções -cftuvSUX nem --sort for especificada.  
+       verificado.   
+OPÇÕES
+
+Lista as opções para o comando, bem como uma descrição de como elas são usadas. Frequentemente, essas informações são encontradas na seção e não em uma seção DESCRIPTIONseparada .OPTIONS
+
+       -a, --todos                                                                
+              não ignore entradas que começam com .  
+ 
+       -A, --quase-todos                                                         
+              não liste implícito . e ..                                      
+                                                                                
+       --autor                                                                 
+              com -l, imprima o autor de cada arquivo                            
+                                                                                
+       -b, --escape                                                             
+              imprimir escapes no estilo C para caracteres não gráficos                   
+                                                                                
+       --block-size=TAMANHO                                                        
+              dimensionar os tamanhos por TAMANHO antes de imprimi-los; por exemplo, '--block-size=M'  
+              imprime tamanhos em unidades de 1.048.576 bytes; veja o formato SIZE abaixo   
+ARQUIVOS
+
+Lista os arquivos que estão associados ao comando, bem como uma descrição de como eles são usados. Esses arquivos podem ser usados ​​para configurar os recursos mais avançados do comando. Geralmente, essas informações são encontradas na seção e não em uma seção DESCRIPTIONseparada .FILES
+
+AUTOR
+
+Fornece o nome da pessoa que criou a página de manual e (às vezes) como contatá-la.
+
+AUTOR                                                                         
+       Escrito por Richard M. Stallman e David MacKenzie.
+RELATANDO BUGS
+
+Fornece detalhes sobre como relatar problemas com o comando.
+
+RELATANDO BUGS                                                                  
+       Ajuda on-line do GNU coreutils: <http://www.gnu.org/software/coreutils/>      
+       Relate os erros de tradução do ls para <http://translationproject.org/team/>
+DIREITO AUTORAL
+
+Fornece informações básicas sobre direitos autorais.
+
+DIREITO AUTORAL                                                                       
+       Copyright (C) 2017 Free Software Foundation, Inc. Licença GPLv3+: GNU  
+       GPL versão 3 ou posterior <http://gnu.org/licenses/gpl.html>.               
+       Este é um software livre: você tem liberdade para alterá-lo e redistribuí-lo.  
+       NÃO HÁ GARANTIA, na medida permitida por lei.   
+VEJA TAMBÉM
+
+Fornece uma ideia de onde você pode encontrar informações adicionais. Isso geralmente inclui outros comandos relacionados a este comando.
+
+VEJA TAMBÉM                                                                        
+       Documentação completa em: <http://www.gnu.org/software/coreutils/ls>        
+       ou disponível localmente via: info '(coreutils) ls invocation'  
+
+Pesquisando Man Pages
+Para pesquisar uma página de manual por um termo, digite o /caractere seguido por um termo de pesquisa e pressione a tecla Enter . O programa pesquisa do local atual para baixo em direção ao final da página para tentar localizar e destacar o termo.
+
+Se uma correspondência for encontrada, ela será destacada. Para mover para a próxima correspondência do termo, pressione n . Para retornar a uma correspondência anterior do termo, pressione Shift + N . Se o termo não for encontrado, ou ao atingir o fim das correspondências, o programa relatará Pattern not found (press Return).
+
+ Páginas de manual categorizadas por seções
+Até agora, temos exibido páginas de manual para comandos. No entanto, há vários tipos diferentes de comandos (comandos de usuário, comandos de sistema e comandos de administração), arquivos de configuração e outros recursos, como bibliotecas e componentes do kernel, que exigem documentação.
+
+Como resultado, há milhares de páginas de manual em uma distribuição Linux típica. Para organizar todas essas páginas de manual, elas são categorizadas por seções.
+
+Por padrão, há nove seções de páginas de manual:
+
+Comandos Gerais
+Chamadas de sistema
+Chamadas da biblioteca
+Arquivos especiais
+Formatos e convenções de arquivo
+Jogos
+Variado
+Comandos de Administração do Sistema
+Rotinas do Kernel
+O mancomando pesquisa cada uma dessas seções em ordem até encontrar a primeira correspondência. Por exemplo, se você executar o comando man cal, a primeira seção (Comandos Gerais) será pesquisada para uma página de manual chamada cal. Se não for encontrada, a segunda seção será pesquisada. Se nenhuma página de manual for encontrada após pesquisar todas as seções, uma mensagem de erro será retornada:
+
+sysadmin@localhost : ~ $ man zed                                          
+Nenhuma entrada manual para zed                                               
+Para determinar a qual seção uma página de manual específica pertence, observe o valor numérico na primeira linha da saída da página de manual. Por exemplo, o calcomando pertence à primeira seção das páginas de manual:
+
+CAL( 1 ) Manual de Comandos Gerais BSD CAL( 1 )
+Às vezes, há páginas de manual com o mesmo nome em seções diferentes. Nesses casos, pode ser necessário especificar a seção da página de manual correta.
+
+Por exemplo, há um comando chamado passwdque permite que você altere sua senha. Há também um arquivo chamado passwdque armazena informações de conta. Tanto o comando quanto o arquivo têm uma página man.
+
+O passwdcomando é um comando de usuário, então a página de manual associada está na primeira seção. O mancomando exibe a página de manual para o passwdcomando por padrão:
+
+sysadmin@localhost : ~ $ man senha
+Comandos do usuário PASSWD(1) PASSWD(1)
+Então, como você exibe a página de manual para o arquivo passwd? Primeiro, determine em qual seção a página de manual está localizada. Para procurar páginas de manual por nome, use a -fopção do mancomando. Ela exibe páginas de manual que correspondem, ou correspondem parcialmente, a um nome específico e fornece o número da seção e uma breve descrição de cada página de manual:
+
+sysadmin@localhost : ~ $ man -f senha                                    
+passwd (5) - o arquivo de senha                              
+passwd (1) - alterar senha do usuário                           
+passwd (1ssl) - calcula hashes de senha                         
+Nota: Na maioria das distribuições Linux, o whatiscomando faz a mesma coisa que man -f. Nessas distribuições, ambos produzirão a mesma saída.
+Para especificar uma seção diferente, forneça o número da seção como o primeiro argumento do comando man. O comando a seguir exibe a página man passwd localizada na seção 5, que é associada ao passwdarquivo:
+
+sysadmin@localhost : ~ $ man 5 senha
+Formatos de arquivo e conversões PASSWD(5) PASSWD(5)
+Infelizmente, você nem sempre vai lembrar o nome exato da página de manual que deseja visualizar. Felizmente, cada página de manual tem uma breve descrição associada a ela. A -kopção para o mancomando pesquisa tanto os nomes quanto as descrições das páginas de manual para uma palavra-chave.
+
+Por exemplo, para encontrar uma página de manual que mostre como copiar diretórios, pesquise pela palavra-chave copy:
+
+sysadmin@localhost : ~ $ man -k cópia                                               
+cp (1) - copiar arquivos e diretórios                               
+cpgr (8) - copia com bloqueio o arquivo fornecido para a senha ou gr...
+cpio (1) - copiar arquivos de e para arquivos                          
+cppw (8) - copie com bloqueio o arquivo fornecido para a senha ou gr...
+dd (1) - converter e copiar um arquivo                                  
+debconf-copydb (1) - copia um banco de dados debconf                                  
+instalar (1) - copiar arquivos e definir atributos                            
+scp (1) - cópia segura (programa de cópia remota de arquivos)                   
+ssh-copy-id (1) - use chaves disponíveis localmente para autorizar logins em um re...
+Lembre-se de que há milhares de páginas de manual, então, ao pesquisar por uma palavra-chave, seja o mais específico possível. Usar uma palavra genérica, como "the", pode resultar em centenas ou até milhares de resultados.
+
+Nota: Na maioria das distribuições Linux, o aproposcomando faz a mesma coisa que man -k. Nessas distribuições, ambos produzem a mesma saída.
+
+Encontrando Comandos e Documentação
+O whatiscomando (ou man -f) retorna em qual seção uma página de manual está armazenada. Este comando ocasionalmente retorna uma saída incomum, como a seguinte:
+
+sysadmin@localhost : ~ $ whatis ls                                              
+ls (1) - lista o conteúdo do diretório
+ls (lp) - lista o conteúdo do diretório
+Observação
+
+O exemplo acima foi criado para demonstrar um cenário em que dois comandos listam o conteúdo do diretório. A saída no terminal de exemplo acima pode não corresponder à saída na VM.
+
+Com base nessa saída, há dois lscomandos que listam o conteúdo do diretório. A razão simples para isso é que o UNIX tinha duas variantes principais, o que resultou em alguns comandos sendo desenvolvidos "em paralelo" e, portanto, se comportando de forma diferente em diferentes variantes do UNIX. Muitas distribuições modernas do Linux incluem comandos de ambas as variantes do UNIX.
+
+Isso, no entanto, levanta um pequeno problema: quando o lscomando é digitado, qual comando é executado?
+
+Onde esses comandos estão localizados?
+Para procurar o local de um comando ou as páginas de manual de um comando, use o whereiscomando. Este comando procura por comandos, arquivos de origem e páginas de manual em locais específicos onde esses arquivos são tipicamente armazenados:
+
+sysadmin@localhost : ~ $ whereis ls
+ls: /bin/ls /usr/share/man/man1p/ls.1.gz /usr/share/man/man1/ls.1.gz
+As páginas de manual são facilmente distinguidas dos comandos, pois são tipicamente compactadas com um programa chamado gzip, resultando em um nome de arquivo que termina em .gz. Observe que há duas páginas de manual listadas acima, mas apenas um comando: /bin/ls. Isso ocorre porque o lscomando pode ser usado com as opções/recursos descritos por qualquer página de manual. Portanto, ao aprender o que pode ser feito com o lscomando, pode ser interessante explorar ambas as páginas de manual. Felizmente, isso é mais uma exceção, pois a maioria dos comandos tem apenas uma página de manual.
+
+Encontre qualquer arquivo ou diretório
+O whereiscomando é projetado especificamente para encontrar comandos e páginas de manual. Embora isso seja útil, geralmente é necessário encontrar um arquivo ou diretório, não apenas arquivos que são comandos ou páginas de manual.
+
+Para encontrar qualquer arquivo ou diretório, use o locatecomando. Este comando pesquisa um banco de dados de todos os arquivos e diretórios que estavam no sistema quando o banco de dados foi criado. Normalmente, o comando para gerar este banco de dados é executado todas as noites.
+
+sysadmin@localhost : ~ $ localizar gshadow                                   
+/etc/gshadow                                                           
+/etc/gshadow-                                                          
+/usr/include/gshadow.h                                                
+/usr/share/man/cs/man5/gshadow.5.gz                                   
+/usr/share/man/da/man5/gshadow.5.gz                                    
+/usr/share/man/de/man5/gshadow.5.gz                                    
+/usr/share/man/fr/man5/gshadow.5.gz                                    
+/usr/share/man/it/man5/gshadow.5.gz                                    
+/usr/share/man/man5/gshadow.5.gz                                       
+/usr/share/man/ru/man5/gshadow.5.gz                                   
+/usr/share/man/sv/man5/gshadow.5.gz                                    
+/usr/share/man/zh_CN/man5/gshadow.5.gz                                 
+Nenhum arquivo criado hoje será pesquisável com o locatecomando. Se o acesso root estiver disponível, é possível atualizar o locatebanco de dados manualmente executando o updatedbcomando. Usuários comuns não podem atualizar o arquivo do banco de dados.
+
+Observe também que ao usar o locatecomando como um usuário regular, a saída pode ser limitada devido às permissões de arquivo. Se o usuário que está logado não tiver acesso a um arquivo ou diretório no sistema de arquivos devido às permissões, o locatecomando não retornará esses nomes. Esse recurso de segurança foi projetado para impedir que os usuários "explorem" o sistema de arquivos usando o locatebanco de dados. O rootusuário pode pesquisar qualquer arquivo no locatebanco de dados.
+
+A saída do comando locate pode ser bem grande. Ao procurar por um nome de arquivo, como passwd, o locatecomando produz todos os arquivos que contêm a string passwd, não apenas arquivos chamados passwd.
+
+Em muitos casos, é útil começar descobrindo quantos arquivos correspondem. Faça isso usando a -copção para o locatecomando:
+
+sysadmin@localhost : ~ $ locate -c senha                                 
+98
+Para limitar a saída produzida pelo locatecomando, use a -bopção . Esta opção inclui apenas listagens que têm o termo de pesquisa no nome base do nome do arquivo. O nome base é a parte do nome do arquivo que não inclui os nomes dos diretórios.
+
+sysadmin@localhost : ~ $ locate -c -b senha                              
+83                                                                     
+Como você pode ver na saída anterior, ainda haverá muitos resultados quando a -bopção for usada. Para limitar a saída ainda mais, coloque um \caractere na frente do termo de pesquisa. Esse caractere limita a saída a nomes de arquivo que correspondem exatamente ao termo:
+
+sysadmin@localhost : ~ $ locate -b "\passwd"                              
+/etc/senha                                                                     
+/etc/pam.d/passwd                                                               
+/usr/bin/senha                                                                 
+/usr/compartilhar/doc/senha                                                           
+/usr/share/lintian/substitui/senha
+
+Documentação de informações
+Man pages são excelentes fontes de informação, mas tendem a ter algumas desvantagens. Um exemplo é que cada man page é um documento separado, não relacionado a nenhuma outra man page. Enquanto algumas man pages têm uma SEE ALSOseção que pode se referir a outras man pages, elas tendem a ser fontes independentes de documentação.
+
+O infocomando também fornece documentação sobre comandos e recursos do sistema operacional. O objetivo é um pouco diferente das páginas man: fornecer um recurso de documentação que forneça uma estrutura organizacional lógica, facilitando a leitura da documentação.
+
+Toda a documentação é mesclada em um único "livro" representando toda a documentação disponível. Dentro dos documentos de informação, as informações são divididas em categorias que funcionam muito como um índice em um livro. Hiperlinks são fornecidos para páginas com informações sobre tópicos individuais para um comando ou recurso específico.
+
+Outra vantagem das info sobre as man pages é que o estilo de escrita dos documentos info é tipicamente mais propício ao aprendizado de um tópico. Considere as man pages como mais um recurso de referência e os info documents como mais um guia de aprendizado.
+
+Visualizando a documentação de informações
+Para exibir a documentação de informações de um comando, use o infocomando.
+
+comando info
+Por exemplo, para exibir a página de informações do lscomando:
+
+sysadmin@localhost : ~ $ info ls       
+Navegue pelo documento usando as teclas de seta:
+
+Próximo: invocação de dir, Acima: listagem de diretórios
+
+10.1 `ls': Listar conteúdo do diretório                                     
+=================================  
+
+    O programa `ls' lista informações sobre arquivos (de qualquer tipo, incluindo diretórios). Opções e argumentos de arquivo podem ser intercalados arbitrariamente, como de costume.
+
+    Para argumentos de linha de comando não opcionais que são diretórios, por    
+O padrão `ls' lista o conteúdo dos diretórios, não recursivamente, e   
+omitindo arquivos com nomes que começam com `.'. Para outras opções não    
+argumentos, por padrão `ls' lista apenas o nome do arquivo. Se nenhuma opção não for
+argumento é especificado, `ls' opera no diretório atual, agindo  
+como se tivesse sido invocado com um único argumento de `.'.                        
+                                                                       
+    Por padrão, a saída é classificada em ordem alfabética, de acordo com o  
+configurações de localidade em vigor.(1) Se a saída padrão for um terminal, o    
+a saída está em colunas (classificadas verticalmente) e os caracteres de controle são    
+saída como pontos de interrogação; caso contrário, a saída é listada uma por linha
+e os caracteres de controle são produzidos como estão.
+
+-----Info: (coreutils)ls invocation, 57 lines --Top-----------------------------
+Bem-vindo ao Info versão 6.5. Digite H para ajuda, h para tutorial.   
+Esta documentação é dividida em nós, e no exemplo acima a linha destacada em branco mostra que ela está atualmente no ls invocationnó. A primeira linha fornece informações de índice sobre o local atual dentro do documento. O próximo nó, como o próximo capítulo em um livro, seria o dir invocationnó. Subindo um nível está o Directory listingnó.
+
+Percorrendo o documento, observe o menu do lscomando:
+
+* Cardápio:                                                                         
+                           
+* Quais arquivos estão listados::                     
+* Quais informações estão listadas::                 
+* Classificando a saída::                          
+* Detalhes sobre a versão sort::                   
+* Formatação geral de saída::                    
+* Formatação de carimbos de data/hora do arquivo::                    
+* Formatando os nomes dos arquivos::                                                   
+                                         
+   ---------- Notas de rodapé ----------                                              
+          
+ (1) Se você usar um local não POSIX (por exemplo, definindo `LC_ALL' para
+`en_US'), então `ls' pode produzir uma saída que é classificada de forma diferente de
+você está acostumado. Nesse caso, defina o ambiente `LC_ALL'     
+variável para `C'.                     
+                                           
+-----Info: (coreutils)ls invocation, 57 lines --Bot-----------------------------
+Os itens sob o menu são hiperlinks que ligam a nós que descrevem mais sobre o lscomando. Por exemplo, colocar o cursor na linha * Sorting the output::e pressionar a tecla Enter leva a um nó que descreve a classificação da saída do lscomando:
+
+Próximo: Detalhes sobre a classificação de versão, Anterior: Quais informações são listadas, Acima: ls in\
+vocação                                                                        
+                                                                                
+10.1.3 Classificando a saída                                                       
+-------------------------                                                       
+                                                                                
+Essas opções alteram a ordem em que 'ls' classifica as informações que ele           
+saídas. Por padrão, a classificação é feita por código de caractere (por exemplo, ASCII            
+ordem).                                                                         
+                                                                                
+'-c'                                                                            
+'--tempo=ctime'                                                                  
+'--tempo=estado'                                                                 
+     Se o formato de listagem longa (por exemplo, '-l', '-o') estiver sendo usado, imprima         
+     o carimbo de data/hora de mudança de status (o ctime) em vez do mtime. Quando        
+     classificação explícita por tempo ('--sort=time' ou '-t') ou quando não             
+     usando um formato de lista longa, classifique de acordo com o ctime. *Nota           
+     Carimbos de data e hora do arquivo::.                                                         
+                                                                                
+'-f'                                                                            
+     Principalmente, como '-U'--não classifique; liste os arquivos em qualquer ordem        
+     eles são armazenados no diretório. Mas também habilite '-a' (listar todos          
+-----Info: (coreutils)Sorting the output, 69 lines --Top------------------------
+Note que entrar no nó sobre classificação leva a um subnó do original. Para voltar ao nó anterior, use a tecla U. Enquanto U leva ao início do nó um nível acima, a tecla L retorna ao mesmo local de antes de entrar no nó de classificação.
+
+Navegando pelos documentos de informação
+Assim como o mancomando, uma lista de comandos de movimento está disponível pressionando a tecla Shift + H durante a leitura da documentação de informações:
+
+Teclas de comando de informações básicas                                                         
+                                                                                
+l Feche esta janela de ajuda.                                             
+q Saia do Info completamente.                                               
+h Invoque o tutorial Info.                                           
+                                                                                
+Para cima Mover uma linha para cima.                                                   
+Para baixo Move uma linha para baixo.                                                 
+PgUp Rola uma tela inteira para trás.                                      
+PgDn Avança uma tela.                                       
+Início Vá para o início deste nó.                                   
+Fim Vá para o final deste nó.                                         
+                                                                                
+TAB Pula para o próximo link de hipertexto.                                    
+RET Siga o link de hipertexto sob o cursor.                         
+l Retornar ao último nó visto nesta janela.                       
+                                                                                
+[ Ir para o nó anterior no documento.                            
+] Vá para o próximo nó no documento.                                
+p Vá para o nó anterior neste nível.                              
+n Vá para o próximo nó neste nível.                                  
+u Suba um nível.                                                    
+-----Info: *Info Ajuda*, 302 linhas -- Topo--------------------------------------
+Note que para fechar a tela de ajuda, digite a tecla L , que traz de volta o documento atual. Para sair completamente, use a tecla Q.
+
+Explorando a documentação de informações
+Em vez de usar a documentação info para procurar informações sobre um comando ou recurso específico, considere explorar os recursos do Linux lendo a documentação info. Execute o infocomando sem argumentos para ser levado ao nível superior da documentação. Este é um bom ponto de partida para explorar muitos dos recursos oferecidos:
+
+Fontes adicionais de ajuda
+Em muitos casos, as páginas de manual ou a documentação de informações fornecem as informações necessárias de forma eficiente. No entanto, há outras fontes de ajuda das quais você deve estar ciente.
+
+Usando a opção Ajuda
+Muitos comandos fornecerão informações básicas, muito semelhantes às SYNOPSISencontradas nas páginas man, simplesmente usando a --helpopção para o comando. Esta opção é útil para aprender o uso básico de um comando rapidamente sem sair da linha de comando:
+
+sysadmin@localhost : ~ $   cat --help                                                
+Uso: cat [OPÇÃO]... [ARQUIVO]...                                                
+Concatenar ARQUIVO(s) à saída padrão.    
+
+Documentação adicional do sistema
+Na maioria dos sistemas, há um diretório onde é encontrada documentação adicional (como arquivos de documentação armazenados por fornecedores de software de terceiros).
+
+‌⁠​​
+Esses arquivos de documentação são frequentemente chamados de arquivos leia-me, pois os arquivos geralmente têm nomes como READMEou readme.txt. A localização desses arquivos pode variar dependendo da distribuição que você está usando. As localizações típicas incluem /usr/share/doce /usr/doc.
+
+Normalmente, esse diretório é onde os administradores de sistema vão para aprender como configurar serviços de software mais complexos. No entanto, às vezes, usuários comuns também acham essa documentação útil.
+
