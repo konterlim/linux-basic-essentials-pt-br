@@ -1,0 +1,281 @@
+Arquivos e Diretórios
+Nesta tarefa, você explorará os conceitos de arquivos e diretórios.
+
+Em um sistema operacional Linux, os dados são armazenados em arquivos e os arquivos são armazenados em diretórios . Você pode estar acostumado ao termo pastas para descrever diretórios.
+
+Na verdade, os diretórios também são arquivos; os dados que eles contêm são os nomes dos arquivos que foram inseridos neles, juntamente com o número do inode (um número identificador exclusivo atribuído a cada arquivo) de onde os dados daquele arquivo estão no disco.
+
+Como usuário do Linux, você vai querer saber como manipular esses arquivos e diretórios, incluindo como listar arquivos em um diretório, copiar, excluir e mover arquivos.
+
+Aviso
+
+Nomes de arquivos e diretórios no Linux diferenciam maiúsculas de minúsculas. Isso significa que um arquivo chamado ABCnão é o mesmo que um arquivo chamado abc.
+
+Etapa 1
+Digite o seguinte comando para imprimir o diretório de trabalho :
+
+Pcd
+sysadmin@localhost : ~ $ senha                                                       
+/home/administrador do sistema                                                                  
+sysadmin@localhost : ~ $
+O diretório de trabalho é o diretório em que sua janela de terminal está atualmente "dentro". Ele também é chamado de diretório atual . Isso será importante para quando você estiver executando comandos subsequentes, pois eles se comportarão de forma diferente com base no diretório em que você está atualmente.
+
+A saída do pwdcomando ( /home/sysadminno exemplo acima) é chamada de caminho . A primeira barra representa o diretório raiz, o nível superior da estrutura do diretório.
+
+Na saída acima, homehá um diretório sob o diretório raiz e sysadminhá um diretório sob o homediretório .
+
+Quando você abre uma janela de terminal pela primeira vez, você será colocado em seu diretório home. Este é um diretório onde você tem acesso total e outros usuários normalmente não têm acesso por padrão. Para ver o caminho para seu diretório home, você pode executar o seguinte comando para visualizar o valor da HOMEvariável:
+
+eco $HOME
+sysadmin@localhost : ~ $ echo $HOME                                                
+/home/administrador do sistema                                                                  
+sysadmin@localhost : ~ $
+
+Etapa 2
+Você pode usar o cdcomando com um caminho para um diretório para alterar seu diretório atual. Digite o comando a seguir para tornar o diretório raiz seu diretório de trabalho atual e verifique com o pwdcomando:
+
+cd /
+Pcd
+sysadmin@localhost : ~ $ cd /                                                    
+ sysadmin@localhost : / $ pwd                                                     
+/                                                                             
+sysadmin@localhost : / $
+
+Etapa 3
+Para voltar ao seu diretório home, o cdcomando pode ser executado sem um caminho. Volte ao seu diretório home e verifique digitando os seguintes comandos:
+
+cd
+Pcd
+sysadmin@localhost : / $ cd                                                        
+ sysadmin@localhost : ~ $ pwd                                                       
+/home/administrador do sistema                                                                  
+sysadmin@localhost : ~ $
+Observe a mudança no prompt . O caractere til ~representa seu diretório home. Esta parte do prompt informará em qual diretório você está atualmente.
+
+ Etapa 4
+O cdcomando pode ser inserido com um caminho para um diretório especificado como argumento . Execute o cdcomando com o /homediretório como argumento digitando o seguinte:
+
+cd /casa
+Pcd
+sysadmin@localhost : ~ $ cd /home                                                
+ sysadmin@localhost : /home $ pwd                                                 
+/lar                                                                         
+sysadmin@localhost : /home $
+Quando o caminho fornecido como argumento para o cdcomando começa com a barra /, esse caminho é chamado de “caminho absoluto”. Caminhos absolutos são sempre caminhos completos do diretório raiz para um subdiretório ou arquivo.
+
+Etapa 5
+Volte para seu diretório inicial, usando o cdcomando com o til ~como argumento:
+
+CD ~
+Pcd
+sysadmin@localhost : /home $ cd ~                                                
+ sysadmin@localhost : ~ $ pwd                                                     
+/home/administrador do sistema                                                                
+sysadmin@localhost : ~ $
+Quando o caminho fornecido como argumento para o cdcomando começa com um ~caractere til, o terminal expandirá o caractere para o diretório inicial de um usuário com uma conta no sistema.
+
+Se nenhum outro caractere ou uma barra seguir o til, ele será expandido para o diretório inicial do usuário atualmente ativo no shell.
+
+Se um nome de usuário seguir imediatamente o caractere til, então o shell expandirá o til e o nome de usuário para o diretório home daquele nome de usuário. Por exemplo, ~bobseria expandido para /home/bob.
+
+Caminhos que começam com um til são considerados caminhos absolutos porque depois que o shell expande o caminho do til, um caminho absoluto é formado.
+
+Etapa 6
+Use o echocomando abaixo para exibir alguns outros exemplos de uso do til como parte do caminho:
+
+eco ~ ~sysadmin ~root ~mail ~ninguém
+sysadmin@localhost : ~ $ echo ~ ~sysadmin ~root ~mail ~ninguém                     
+/home/sysadmin /home/sysadmin /root /var/mail /inexistente                    
+sysadmin@localhost : ~ $
+
+Etapa 7
+Tente mudar para o diretório inicial do rootusuário digitando o seguinte comando:
+
+cd ~raiz
+sysadmin@localhost : ~ $ cd ~root                                                
+-bash: cd: /root: Permissão negada                                           
+sysadmin@localhost : ~ $
+Observe a mensagem de erro; ela indica que o shell tentou executar cdcom /rootcomo argumento, mas falhou devido à permissão ter sido negada. 
+
+Etapa 8
+Usando um caminho absoluto, mude para o /usr/bindiretório e exiba o diretório de trabalho usando os seguintes comandos:
+
+cd /usr/bin
+Pcd
+sysadmin@localhost : ~ $ cd /usr/bin                                             
+ sysadmin@localhost : /usr/bin $ pwd                                              
+/usr/bin                                                                      
+sysadmin@localhost : /usr/bin $
+
+Etapa 9
+Use um caminho absoluto para alterar para o /usrdiretório e exibir o diretório de trabalho emitindo os seguintes comandos:
+
+cd /usr
+Pcd
+sysadmin@localhost : /usr/bin $ cd /usr                                          
+ sysadmin@localhost : /usr $ pwd                                                  
+/usr                                                                          
+sysadmin@localhost : /usr $
+
+Etapa 10
+Use um caminho absoluto para alterar para o /usr/share/docdiretório e exibir o diretório de trabalho emitindo os seguintes comandos:
+
+cd /usr/share/doc
+Pcd
+sysadmin@localhost : /usr $ cd /usr/share/doc                                    
+ sysadmin@localhost : /usr/share/doc $ pwd                                        
+/usr/compartilhar/doc                                                                
+sysadmin@localhost : /usr/share/doc $
+Caminhos absolutos vs. relativos
+
+Suponha que você esteja no /usr/share/docdiretório e queira ir para /usr/share/doc/bashele. Digitar o comando cd /usr/share/doc/bashresulta em uma quantidade razoável de digitação. Em casos como esse, você quer usar nomes de caminho relativos.
+
+Com nomes de caminho relativos, você fornece "direções" de onde você quer ir do diretório atual. Os exemplos a seguir ilustrarão o uso de nomes de caminho relativos.
+
+ Etapa 11
+Usando um caminho relativo, mude para o /usr/share/doc/bashdiretório e exiba o diretório de trabalho emitindo os seguintes comandos:
+
+festa de cd
+Pcd
+sysadmin@localhost : /usr/share/doc $ cd bash                                    
+ sysadmin@localhost : /usr/share/doc/bash $ pwd                                   
+/usr/compartilhar/doc/bash                                                           
+sysadmin@localhost : /usr/share/doc/bash $
+Observação
+
+Se não houvesse um diretório bash no diretório atual, o comando anterior falharia.
+
+Etapa 12
+Use um caminho relativo para mudar para o diretório acima do diretório atual:
+
+cd ..
+Pcd
+sysadmin@localhost : /usr/share/doc/bash $ cd ..                                 
+ sysadmin@localhost : /usr/share/doc $ pwd                                        
+/usr/compartilhar/doc                                                                
+sysadmin@localhost : /usr/share/doc $
+O ..representa um nível acima do seu local de diretório atual.
+
+Etapa 13
+Use um caminho relativo para subir um nível do diretório atual e depois descer para o dictdiretório:
+
+cd ../dicionário
+Pcd
+sysadmin@localhost : /usr/share/doc $ cd ../dict                                 
+ sysadmin@localhost : /usr/share/dict $ pwd                                       
+/usr/compartilhar/dict                                                               
+sysadmin@localhost : /usr/share/dict $
+
+Etapa 1
+Para listar o conteúdo do diretório atual, use o lscomando:
+
+cd
+eu
+Sua saída deve ser semelhante à seguinte:
+
+sysadmin@localhost : /usr/share/dict $ cd                                        
+ sysadmin@localhost : ~ $ ls                                                      
+ Desktop Documentos Downloads Música Imagens Modelos públicos Vídeos      
+sysadmin@localhost : ~ $
+Na saída do lscomando anterior, os nomes dos arquivos foram colocados em uma cor azul claro. Esse é um recurso que muitas distribuições do Linux fornecem automaticamente por meio de um recurso chamado alias (mais sobre esse recurso em um laboratório posterior).
+
+A cor indica qual é o tipo do item. A tabela a seguir descreve algumas das cores mais comuns:
+
+Cor	Tipo de arquivo
+Preto ou branco	Arquivo regular
+Azul	Arquivo de diretório
+Ciano	Arquivo de link simbólico (um arquivo que aponta para outro arquivo)
+Verde	Arquivo executável (um programa)
+
+Etapa 2
+Nem todos os arquivos são exibidos por padrão. Existem arquivos, chamados arquivos ocultos, que não são exibidos por padrão. Para exibir todos os arquivos, incluindo arquivos ocultos, use a -aopção do lscomando:
+
+ls -a
+sysadmin@localhost : ~ $ ls -a                                                   
+ .              .bashrc .selected_editor   Downloads Público                   
+... .cache Desktop Music Templates                 
+.bash_logout .profile   Documentos Imagens Vídeos                    
+sysadmin@localhost : ~ $
+Os nomes de arquivos ocultos começam com um ponto (um caractere de ponto). Normalmente, esses arquivos e, frequentemente, diretórios são ocultos porque não são arquivos que você normalmente quer ver.
+
+Por exemplo, o .bashrcarquivo mostrado no exemplo acima contém informações de configuração para o shell bash. Este é um arquivo que você normalmente não precisa visualizar regularmente.
+
+Existem dois "arquivos de ponto" importantes em cada diretório: .(que representa o diretório atual) e ..(que representa o diretório acima do diretório atual).
+
+Etapa 3
+Por si só, o lscomando apenas forneceu os nomes dos arquivos e diretórios dentro do diretório especificado (ou atual). Execute o comando a seguir para ver como a -lopção fornece mais informações sobre um arquivo:
+
+ls -l /etc/hosts
+Sua saída deve ser semelhante à seguinte:
+
+sysadmin@localhost : ~ $ ls -l /etc/hosts                                    
+-rw-r--r-- 1 root root 150 22 de janeiro 15:18 /etc/hosts                        
+sysadmin@localhost : ~ $
+Então, o que toda essa saída extra significa? A tabela a seguir fornece uma breve análise do que cada parte da saída ls -lsignifica:
+
+-	O primeiro caractere, a -no exemplo anterior, indica que tipo de "arquivo" é esse. Um -caractere é para um arquivo simples, enquanto um dcaractere seria para um diretório.
+rw-r--r--	Isto representa as permissões do arquivo. Permissões são discutidas em um laboratório posterior.
+1	Isso representa algo chamado contagem de links físicos (discutido mais tarde).
+root	O usuário proprietário do arquivo.
+root	O proprietário do grupo do arquivo.
+150	O tamanho do arquivo em bytes
+Jan 22 15:18	A data/hora em que o arquivo foi modificado pela última vez.
+
+Etapa 4
+Às vezes você quer ver não apenas o conteúdo de um diretório, mas também o conteúdo dos subdiretórios. Você pode usar a -Ropção para fazer isso:
+
+ls -R /etc/udev
+sysadmin@localhost : ~ $ ls -R /etc/udev                                         
+/etc/udev:                                                                      
+hwdb.d regras.d   udev.conf                                                      
+                                                                                
+/etc/udev/hwdb.d:                                                               
+                                                                                
+/etc/udev/rules.d:                                                              
+70-persistent-cd.rules LEIA-ME                                                 
+sysadmin@localhost : ~ $
+A -Ropção significa "recursivo". Todos os arquivos no /etc/udevdiretório serão exibidos, assim como todos os arquivos em cada subdiretório, neste caso o rules.dsubdiretório.
+
+Cuidado com a -Ropção. Alguns diretórios são muito, muito grandes!
+
+Etapa 5
+Você pode usar globbing de arquivo (curingas) para limitar quais arquivos ou diretórios você vê. Por exemplo, o *caractere pode corresponder a "zero ou mais de quaisquer caracteres" em um nome de arquivo. Execute o comando a seguir para exibir apenas os arquivos que começam com a letra sno /etcdiretório:
+
+ls -d /etc/s*
+Sua saída deve ser semelhante à seguinte:
+
+sysadmin@localhost : ~ $ ls -d /etc/s*                                           
+/etc/securetty   /etc/sgml      /etc/shells   /etc/ssl         /etc/sysctl.conf   
+ /etc/security    /etc/shadow    /etc/skel     /etc/sudoers     /etc/sysctl.d       
+/etc/services /etc/shadow-   /etc/ssh /etc/sudoers.d /etc/systemd        
+sysadmin@localhost : ~ $
+Note que a -dopção impede que arquivos de subdiretórios sejam exibidos. Ela deve sempre ser usada com o lscomando quando você estiver usando globbing de arquivo.
+
+Etapa 6
+O ?caractere pode ser usado para corresponder exatamente a 1 caractere em um nome de arquivo. Execute o comando a seguir para exibir todos os arquivos no /etcdiretório que têm exatamente quatro caracteres de comprimento:
+
+ls -d /etc/????
+Sua saída deve ser semelhante à seguinte:
+
+sysadmin@localhost : ~ $ ls -d /etc/????                                         
+ /etc/bind /etc/init   /etc/motd   /etc/perl /etc/skel                         
+/etc/dpkg /etc/ldap   /etc/mtab   /etc/sgml /etc/udev                          
+sysadmin@localhost : ~ $
+
+Etapa 7
+Usando colchetes, [ ]você pode especificar um único caractere para corresponder a partir de um conjunto de caracteres. Execute o comando a seguir para exibir todos os arquivos no /etcdiretório que começam com as letras a, b, cou d:
+
+ls –d /etc/[abcd]*
+Sua saída deve ser semelhante à seguinte:
+
+sysadmin@localhost : ~ $ ls -d /etc/[abcd]*                                      
+/etc/adduser.conf /etc/blkid.conf             /etc/cron.weekly       
+/etc/adjtime                  /etc/blkid.tab              /etc/crontab          
+ /etc/alternatives /etc/ca-certificates /etc/dbus-1           
+/etc/apparmor.d               /etc/ca-certificates.conf /etc/debconf.conf     
+ /etc/apt /etc/calendar               /etc/debian_version   
+/etc/bash.bashrc              /etc/cron.d /etc/default          
+/etc/bash_completion.d /etc/cron.daily             /etc/deluser.conf     
+ /etc/bind /etc/cron.hourly /etc/depmod.d          
+/etc/bindresvport.blacklist   /etc/cron.monthly /etc/dpkg              
+sysadmin@localhost : ~ $
