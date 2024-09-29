@@ -1,0 +1,54 @@
+Discos Rígidos
+Discos rígidos , também chamados de discos rígidos, dispositivos de disco ou dispositivos de armazenamento, podem ser conectados ao sistema de várias maneiras; o controlador pode ser integrado à placa-mãe, em uma placa PCI ou como um dispositivo USB. Para os propósitos da maioria dos sistemas Linux, um disco rígido pode geralmente ser definido como qualquer dispositivo de armazenamento eletromecânico ou eletrônico que contém dados a serem acessados ​​pelo sistema.
+
+Os discos rígidos são divididos em uma ou mais partições . Uma partição é uma divisão lógica de um disco rígido, projetada para ocupar uma grande quantidade de espaço de armazenamento disponível e dividi-lo em áreas menores. Embora seja comum no Microsoft Windows ter uma única partição para cada disco rígido, em distribuições Linux, várias partições por disco rígido são comuns.
+
+Alguns discos rígidos fazem uso de uma tecnologia de particionamento chamada Master Boot Record (MBR), enquanto outros fazem uso de um tipo de particionamento chamado GUID Partitioning Table (GPT) . O tipo de particionamento MBR tem sido usado desde os primeiros dias do Computador Pessoal (PC), e o tipo GPT está disponível desde o ano 2000.
+
+Um termo antigo usado para descrever um disco rígido interno é disco fixo , pois o disco é fixo (não removível). Esse termo deu origem a vários nomes de comando: os comandos fdisk, cfdiske sfdisk, que são ferramentas para trabalhar com discos particionados MBR.
+
+Os discos GPT usam um tipo mais novo de particionamento, que permite ao usuário dividir o disco em mais partições do que o que o MBR suporta. O GPT também permite ter partições que podem ser maiores do que dois terabytes (o MBR não). As ferramentas para gerenciar discos GPT são nomeadas de forma semelhante às suas fdiskcontrapartes: gdisk, cgdisk, e sgdisk.
+
+Há também uma família de ferramentas que tentam dar suporte a discos do tipo MBR e GPT. Esse conjunto de ferramentas inclui o partedcomando e a ferramenta gráfica gparted.
+
+Observação
+
+Muitas distribuições Linux usam a gpartedferramenta na rotina de instalação, pois ela fornece uma interface gráfica para as poderosas opções disponíveis para criar novas partições, redimensionar as existentes (como partições do Windows) e muitas outras tarefas avançadas.
+
+Os discos rígidos são associados a nomes de arquivo (chamados de arquivos de dispositivo) que são armazenados no /devdiretório. Cada nome de arquivo de dispositivo é composto de várias partes.
+
+Tipo de arquivo
+
+O nome do arquivo é prefixado com base nos diferentes tipos de discos rígidos. Os discos rígidos IDE (Intelligent Drive Electronics ) começam com hd, enquanto os discos rígidos USB, SATA (Serial Advanced Technology Attachment) e SCSI (Small Computer System Interface) começam com sd.
+
+Ordem do dispositivo
+
+Cada disco rígido recebe então uma letra que segue o prefixo. Por exemplo, o primeiro disco rígido IDE seria nomeado /dev/hdae o segundo seria /dev/hdb, e assim por diante.
+
+Partição
+
+Finalmente, cada partição em um disco recebe um indicador numérico exclusivo. Por exemplo, se um disco rígido USB tiver duas partições, elas podem ser associadas aos arquivos de dispositivo /dev/sda1e /dev/sda2.
+
+O exemplo a seguir mostra um sistema que tem três sddispositivos: /dev/sda, /dev/sdbe /dev/sdc. Além disso, há duas partições no primeiro dispositivo, como evidenciado pelos arquivos /dev/sda1e /dev/sda2, e uma partição no segundo dispositivo, como evidenciado pelo /dev/sdb1arquivo:
+
+root@localhost : ~ $ ls /dev/sd*                                               
+ /dev/sda /dev/sda1 /dev/sda2 /dev/sdb /dev/sdb1 /dev/sdc
+O fdiskcomando pode ser usado para exibir mais informações sobre as partições:
+
+Observação
+
+O comando a seguir requer acesso root.
+
+root@localhost : ~ $ fdisk -l /dev/sda                                             
+Disco /dev/sda: 21,5 GB, 21474836480 bytes                                       
+255 cabeças, 63 setores/trilha, 2610 cilindros, total de 41943040 setores             
+Unidades = setores de 1 * 512 = 512 bytes                                          
+Tamanho do setor (lógico/físico): 512 bytes / 512 bytes                           
+Tamanho de E/S (mínimo/ótimo): 512 bytes / 512 bytes                               
+Identificador do disco: 0x000571a2                                                     
+                                                                                
+⁠⁠​ ⁠
+   Dispositivo Inicialização Início Fim Blocos Id Sistema                  
+/dev/sda1 * 2048 39845887 19921920 83 Linux                   
+/dev/sda2 39847934 41940991 1046529 5 Estendido                
+/dev/sda5 39847936 41940991 1046528 82 Troca Linux / Solaris
